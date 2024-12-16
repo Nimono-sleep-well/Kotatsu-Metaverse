@@ -1,10 +1,11 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+import { addDoc, collection, doc, deleteDoc, DocumentSnapshot, getDoc, getDocs, onSnapshot, query, QuerySnapshot, serverTimestamp, setDoc, where, updateDoc, orderBy } from 'firebase/firestore';
 
-const Signin = ({ name, age }) => {
+const Signin = () => {
     return (
         <div>
-            <h1>{age}</h1>
-            <h2>{name}</h2>
+            <h1>Signin</h1>
         </div>
     )
 }

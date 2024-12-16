@@ -16,7 +16,7 @@ function App() {
         <BrowserRouter>
           <Link to="/">Signin</Link> | <Link to="/Home">Home</Link> | <Link to="/SelectRoom">SelectRoom</Link>
           <Routes>
-            <Route path='/' element={<Signin name="asssdaf" age="10"/>}></Route>
+            <Route path='/' element={<Signin/>}></Route>
             <Route path='/Home' element={<Home/>}></Route>
             <Route path='/SelectRoom' element={<SelectRoom/>}></Route>
             <Route path='*' element={<NotFound/>}></Route>
