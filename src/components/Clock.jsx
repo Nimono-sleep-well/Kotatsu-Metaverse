@@ -11,7 +11,10 @@ const Clock = () => {
     }, []);
 
     const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1;
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const month = monthNames[currentDate.getMonth()];
+    const day = dayNames[currentDate.getDay()]
     const date = currentDate.getDate();
     const hour = currentDate.getHours().toString().padStart(2, "0");
     const minute = currentDate.getMinutes().toString().padStart(2, "0");
@@ -26,11 +29,11 @@ const Clock = () => {
             textAlign: 'center',      // 文字を中央揃え
             flexDirection: 'column'   // 要素を縦方向に並べる
         }}>
-            <p style={{ fontFamily: 'Impact, sans-serif', fontSize: '10em', fontWeight: 'bold' }}>
+            <p style={{ fontFamily: 'Orbitron, sans-serif', fontSize: '6em', fontWeight: 'bold' }}>
                 {hour}:{minute}:{second}
             </p>
-            <p style={{ fontFamily: 'Impact, sans-serif', fontSize: '4em', fontWeight: 'bold' }}>
-                {year}年{month}月{date}日
+            <p style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2em', fontWeight: 'bold' }}>
+                {month} {date} {day}
             </p>
         </div>
     );
