@@ -1,6 +1,7 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, QuerySnapshot } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, QuerySnapshot, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig"
 import { React, useState, useEffect } from "react"
+import { Link } from "react-router-dom";
 
 const SelectRoom = () => {
 
@@ -23,7 +24,7 @@ const SelectRoom = () => {
         event.preventDefault();
         const { name } = event.target.elements;
         const roomsCollectionRef = collection(db, 'rooms');
-        const documentRef = await addDoc(roomsCollectionRef, {
+        await addDoc(roomsCollectionRef, {
             name: name.value,
             peopleInRoom: 0,
         });
@@ -34,13 +35,21 @@ const SelectRoom = () => {
         await deleteDoc(roomsDocumentRef);
     }
 
+    const transitionRoom = async (room) => {
+        const roomsDocumentRef = doc(db, 'rooms', room.id);
+        await setDoc(roomsDocumentRef, {
+            name: room.name,
+            peopleInRoom: room.peopleInRoom + 1,
+        })
+    }
+
     return (
         <div>
             <h1>RoomList</h1>
             {rooms.map((room) => (
                 <div key={room.id}>
                     <span>
-                        <button className="bg-red-50">
+                        <button onClick={() => {transitionRoom(room) ; location.href="/Home"}}>
                             <span>{room.name}</span>
                             <span> | </span>
                             <span>{room.peopleInRoom}</span>
