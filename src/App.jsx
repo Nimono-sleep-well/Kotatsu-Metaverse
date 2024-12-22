@@ -10,7 +10,7 @@ import NotFound from './views/NotFound'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState('');
 
   return (
     <>
@@ -19,8 +19,8 @@ function App() {
           <Link to="/">Signin</Link> | <Link to="/Home">Home</Link> | <Link to="/SelectRoom">SelectRoom</Link>
           <Routes>
             <Route path='/' element={<Signin/>}></Route>
-            <Route path='/Home' element={<Home/>}></Route>
-            <Route path='/SelectRoom' element={<SelectRoom/>}></Route>
+            <Route path='/Home' element={<Home id={data}/>}></Route>
+            <Route path='/SelectRoom' element={<SelectRoom setData={setData}/>}></Route>
             <Route path='*' element={<NotFound/>}></Route>
           </Routes>
         </BrowserRouter>
