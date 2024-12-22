@@ -10,7 +10,7 @@ const Clock = () => {
         return () => clearInterval(timer);
     }, []);
 
-    const year = currentDate.getFullYear();
+    //const year = currentDate.getFullYear();//12/17時点では使わん
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const month = monthNames[currentDate.getMonth()];
