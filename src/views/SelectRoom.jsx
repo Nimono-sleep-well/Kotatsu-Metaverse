@@ -1,11 +1,13 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, QuerySnapshot, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig"
 import { React, useState, useEffect } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SelectRoom = () => {
 
     const [rooms, setRooms] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -37,9 +39,11 @@ const SelectRoom = () => {
 
     const transitionRoom = async (room) => {
         const roomsDocumentRef = doc(db, 'rooms', room.id);
+        const nextValueOfPeopleInRoom = room.peopleInRoom + 1;
+        navigate("/Home");
         await setDoc(roomsDocumentRef, {
             name: room.name,
-            peopleInRoom: room.peopleInRoom + 1,
+            peopleInRoom: nextValueOfPeopleInRoom,
         })
     }
 
@@ -49,7 +53,10 @@ const SelectRoom = () => {
             {rooms.map((room) => (
                 <div key={room.id}>
                     <span>
-                        <button onClick={() => {transitionRoom(room) ; location.href="/Home"}}>
+                        <button onClick={
+                            () => {
+                                transitionRoom(room)}
+                            }>
                             <span>{room.name}</span>
                             <span> | </span>
                             <span>{room.peopleInRoom}</span>
