@@ -1,11 +1,11 @@
 import React from 'react'
-import { data } from 'react-router-dom'
+import Clock from '../components/Clock'
 
 const Home = ({id}) => {
     return (
         <div>
             <h1>Home</h1>
-            <h1>{id}</h1>
+            <Clock></Clock>
         </div>
     )
 }
