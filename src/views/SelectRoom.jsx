@@ -29,6 +29,7 @@ const SelectRoom = (props) => {
         event.preventDefault();
         const { name } = event.target.elements;
         const roomsCollectionRef = collection(db, 'rooms');
+        
         await addDoc(roomsCollectionRef, {
             name: name.value,
             peopleInRoom: 0,
@@ -48,7 +49,11 @@ const SelectRoom = (props) => {
         await setDoc(roomsDocumentRef, {
             name: room.name,
             peopleInRoom: nextValueOfPeopleInRoom,
-        })
+        });
+        await addDoc(collection(db, 'rooms', room.id, 'messages'), {
+            name: 'System',
+            text: 'Welcome to ' + room.name,
+        });
     }
 
     return (
