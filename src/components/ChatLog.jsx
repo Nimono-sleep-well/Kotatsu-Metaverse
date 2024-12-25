@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import { format } from 'date-fns';
+
 import { db } from '../../firebaseConfig'
 import { addDoc, collection, doc, deleteDoc, DocumentSnapshot, getDoc, getDocs, onSnapshot, query, QuerySnapshot, serverTimestamp, setDoc, where, updateDoc, orderBy } from 'firebase/firestore'
 
@@ -11,11 +13,11 @@ const ChatLog = ({ roomID }) => {
 
         
         const messageCollectionRef = collection(db, 'rooms', roomID, 'messages');
-        const q = query(messageCollectionRef, orderBy('timeStamps', 'desc'));
+        const q = query(messageCollectionRef, orderBy('sendAt', 'desc'));
         const unsub = onSnapshot(q, (QuerySnapshot) => {
             setMessages(
                 QuerySnapshot.docs.map(
-                    (doc) => ({ ...doc.data(), id: doc.id})
+                    (doc) => ({ ...doc.data({ serverTimestamps: "estimate" }), id: doc.id})
                 )
             )
         });
@@ -36,8 +38,10 @@ const ChatLog = ({ roomID }) => {
             {messages.map((message) => (
                 <div key={message.id}>
                     <span>{message.name}</span>
-                    <span>：</span>
+                    <span> : </span>
                     <span>{message.text}</span>
+                    <span> : </span>
+                    <span>{format(message.sendAt.toDate(), 'hh:mm:ss')}</span>
                 </div>
             ))}
         </div>

@@ -18,7 +18,7 @@ const InputChat = ({ roomID }) => {
             const documentRef = await addDoc(chatLogcollectionRef, {
             name: 'User',
             text: inputText,
-            timeStamps: serverTimestamp(),
+            sendAt: serverTimestamp(),
         });
             setInputText('');
         }
