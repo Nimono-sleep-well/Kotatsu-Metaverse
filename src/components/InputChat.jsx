@@ -6,10 +6,6 @@ import { collection, onSnapshot, addDoc, serverTimestamp } from 'firebase/firest
 const InputChat = ({ roomID }) => {
 
     const [inputText, setInputText] = useState('');
-    const [savedText, setSavedText] = useState('');
-
-    const chatLogcollectionRef = collection(db, 'rooms', roomID, 'messages');
-
 
     const handleKeyDown = async (event) => {
         if (event.key === 'Enter') {

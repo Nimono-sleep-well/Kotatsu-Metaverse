@@ -2,15 +2,12 @@ import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query
 import { db } from "../../firebaseConfig"
 import { React, useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import Home from "./Home";
 
 const SelectRoom = (props) => {
 
     const [rooms, setRooms] = useState([]);
 
     const navigate = useNavigate();
-
-    let currentRoomID;
 
     useEffect(() => {
 

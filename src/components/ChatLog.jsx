@@ -23,14 +23,6 @@ const ChatLog = ({ roomID }) => {
         });
         return unsub;
 
-        /*
-        const messageDocumentRef = doc(db, 'rooms', roomID);
-        const unsub = onSnapshot(messageDocumentRef, (DocumentSnapshot) => {
-            console.log(DocumentSnapshot.data());
-        });
-        return unsub;
-        */
-
     }, []);
     
     return (
