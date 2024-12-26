@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addDoc, collection, doc, deleteDoc, DocumentSnapshot, getDoc, getDocs, onSnapshot, query, QuerySnapshot, serverTimestamp, setDoc, where, updateDoc, orderBy } from 'firebase/firestore';
 
-const Signin = ({}) => {
+const Signin = () => {
     const [userName, setUsername] = useState('');
     const [registeredUserNames, setRegisteredUserNames] = useState([]);
 
