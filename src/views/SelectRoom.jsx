@@ -2,15 +2,12 @@ import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query
 import { db } from "../../firebaseConfig"
 import { React, useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import Home from "./Home";
 
 const SelectRoom = (props) => {
 
     const [rooms, setRooms] = useState([]);
 
     const navigate = useNavigate();
-
-    let currentRoomID;
 
     useEffect(() => {
 
@@ -29,6 +26,7 @@ const SelectRoom = (props) => {
         event.preventDefault();
         const { name } = event.target.elements;
         const roomsCollectionRef = collection(db, 'rooms');
+        
         await addDoc(roomsCollectionRef, {
             name: name.value,
             peopleInRoom: 0,
@@ -48,7 +46,11 @@ const SelectRoom = (props) => {
         await setDoc(roomsDocumentRef, {
             name: room.name,
             peopleInRoom: nextValueOfPeopleInRoom,
-        })
+        });
+        await addDoc(collection(db, 'rooms', room.id, 'messages'), {
+            name: 'System',
+            text: 'Welcome to ' + room.name,
+        });
     }
 
     return (

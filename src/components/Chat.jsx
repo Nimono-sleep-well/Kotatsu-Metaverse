@@ -1,8 +1,14 @@
 import React from 'react'
 
-const Chat = () => {
+import InputChat from './InputChat'
+import ChatLog from './ChatLog'
+
+const Chat = ({ roomID }) => {
     return (
-        <div>Chat</div>
+        <div>
+            <InputChat roomID={roomID}></InputChat>
+            <ChatLog roomID={roomID}></ChatLog>
+        </div>
     )
 }
 
