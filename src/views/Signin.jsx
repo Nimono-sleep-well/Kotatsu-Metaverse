@@ -10,7 +10,6 @@ const Signin = ({ name, age }) => {
             setUsername(''); // 入力欄をクリア
         }
     };
-
     // Enterキーで登録する処理
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
