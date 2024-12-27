@@ -12,7 +12,8 @@ const SelectRoom = (props) => {
     useEffect(() => {
 
         const roomsCollectionRef = collection(db, 'rooms');
-        const unsub = onSnapshot(roomsCollectionRef, (QuerySnapshot) => {
+        const q = query(roomsCollectionRef, orderBy('peopleInRoom', 'desc'));
+        const unsub = onSnapshot(q, (QuerySnapshot) => {
             setRooms(
                 QuerySnapshot.docs.map(
                     (doc) => ({ ...doc.data(), id: doc.id})
