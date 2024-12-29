@@ -5,13 +5,13 @@ const Kotatsu = () => {
   let imageSrc = '';
 
     if(east&&west){
-      imageSrc='public/kotatsu.png';
+      imageSrc='/kotatsu.png';
     }else if(east){
-      imageSrc='public/kotatsu.png';
+      imageSrc='/kotatsu.png';
     }else if(west){
-      imageSrc='public/kotatsu.png';
+      imageSrc='/kotatsu.png';
     }else{
-      imageSrc='public/kotatsu.png';
+      imageSrc='/kotatsu.png';
     }
 
   return (
