@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, QuerySnapshot, setDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, QuerySnapshot, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig"
 import { React, useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 const SelectRoom = (props) => {
 
     const [rooms, setRooms] = useState([]);
+    
+    let userData = '';
 
     const navigate = useNavigate();
 
@@ -41,6 +43,18 @@ const SelectRoom = (props) => {
 
     const transitionRoom = async (room) => {
         const roomsDocumentRef = doc(db, 'rooms', room.id);
+        const usersDocumentRef = doc(db, 'usersInLobby', props.user);
+
+        getDoc(usersDocumentRef).then((DocumentSnapshot) => {
+            if(DocumentSnapshot.exists()){
+                userData = DocumentSnapshot.data().name;
+                console.log(DocumentSnapshot.data().name);
+                console.log(userData);
+            } else {
+                console.log('[Err]No such document');
+            }
+        })
+
         const nextValueOfPeopleInRoom = room.peopleInRoom + 1;
         props.setData(room.id);
         navigate("/Home");
@@ -52,11 +66,18 @@ const SelectRoom = (props) => {
             name: 'System',
             text: 'Welcome to ' + room.name,
         });
+        await addDoc(collection(db, 'rooms', room.id, 'users'), {
+            name: userData,
+            motion: 0,
+            x: 0,
+            y: 0,
+        });
     }
 
     return (
         <div>
             <h1>RoomList</h1>
+            <h2>{props.user}</h2>
             {rooms.map((room) => (
                 <div key={room.id}>
                     <span>

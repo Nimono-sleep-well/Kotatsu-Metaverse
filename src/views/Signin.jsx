@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { db } from '../../firebaseConfig';
 import { addDoc, collection, doc, deleteDoc, DocumentSnapshot, getDoc, getDocs, onSnapshot, query, QuerySnapshot, serverTimestamp, setDoc, where, updateDoc, orderBy } from 'firebase/firestore';
 
-const Signin = () => {
+const Signin = (props) => {
     const [userName, setUsername] = useState('');
-    const [registeredUserNames, setRegisteredUserNames] = useState([]);
 
     const registerUserNames = () => {
         if (userName.trim() !== '') {
-            setRegisteredUserNames([...registeredUserNames, userName]);
+
+            const usersCollectionRef = collection(db, 'usersInLobby');
+            const documentRef = addDoc(usersCollectionRef, {
+                name: userName,
+            })
+            .then(docRef => {
+                props.setUser(docRef.id);
+            })
             setUsername(''); // 入力欄をクリア
         }
     };
@@ -28,16 +35,6 @@ const Signin = () => {
                 onKeyDown={handleKeyDown} 
             />
             <button style={{ border: '1px solid black' }} onClick={registerUserNames}>登録</button>
-            {registeredUserNames.length > 0 && (
-                <div>
-                    <h2>登録されたユーザー名:</h2>
-                    <ul>
-                        {registeredUserNames.map((name, index) => (
-                            <li key={index}>{name}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
         </div>
     );
 };
