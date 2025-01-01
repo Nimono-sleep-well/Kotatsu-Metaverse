@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const SelectRoom = (props) => {
 
     const [rooms, setRooms] = useState([]);
-    
+
     let userData = '';
 
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const SelectRoom = (props) => {
         const unsub = onSnapshot(q, (QuerySnapshot) => {
             setRooms(
                 QuerySnapshot.docs.map(
-                    (doc) => ({ ...doc.data(), id: doc.id})
+                    (doc) => ({ ...doc.data(), id: doc.id })
                 )
             )
         });
@@ -29,7 +29,7 @@ const SelectRoom = (props) => {
         event.preventDefault();
         const { name } = event.target.elements;
         const roomsCollectionRef = collection(db, 'rooms');
-        
+
         await addDoc(roomsCollectionRef, {
             name: name.value,
             peopleInRoom: 0,
@@ -46,7 +46,7 @@ const SelectRoom = (props) => {
         const usersDocumentRef = doc(db, 'usersInLobby', props.user);
 
         getDoc(usersDocumentRef).then((DocumentSnapshot) => {
-            if(DocumentSnapshot.exists()){
+            if (DocumentSnapshot.exists()) {
                 userData = DocumentSnapshot.data().name;
                 console.log(DocumentSnapshot.data().name);
                 console.log(userData);
@@ -75,35 +75,37 @@ const SelectRoom = (props) => {
     }
 
     return (
-        <div>
-            <h1>RoomList</h1>
-            <h2>{props.user}</h2>
-            {rooms.map((room) => (
-                <div key={room.id}>
-                    <span>
-                        <button onClick={
-                            () => {
-                                transitionRoom(room)}
+        <div className='font-body flex w-screen h-screen bg-amber-100 items-center justify-center'>
+            <div className="flex w-11/12 h-5/6 bg-white">
+                <h1>RoomList</h1>
+                {rooms.map((room) => (
+                    <div key={room.id}>
+                        <span>
+                            <button className="w-1/2 h-1/2 bg-amber-200" onClick={
+                                () => {
+                                    transitionRoom(room)
+                                }
                             }>
-                            <span>{room.name}</span>
+                                <span>{room.name}</span>
+                                <span> | </span>
+                                <span>{room.peopleInRoom}</span>
+                            </button>
+                        </span>
+                        <span>
                             <span> | </span>
-                            <span>{room.peopleInRoom}</span>
-                        </button>
+                            <button onClick={() => deleteRoom(room.id)}>Delete</button>
+                        </span>
+                    </div>
+                ))}
+                <form onSubmit={createRoom}>
+                    <span>
+                        <input name="name" type="text" placeholder="Roomの名前" />
                     </span>
                     <span>
-                        <span> | </span>
-                        <button onClick={() => deleteRoom(room.id)}>Delete</button>
+                        <button>Create</button>
                     </span>
-                </div>
-            ))}
-            <form onSubmit={createRoom}>
-                <span>
-                    <input name="name" type="text" placeholder="Roomの名前" />
-                </span>
-                <span>
-                    <button>Create</button>
-                </span>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }
