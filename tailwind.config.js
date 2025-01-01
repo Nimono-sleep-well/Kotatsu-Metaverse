@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      body: [
+        'Koruri',
+        'SourceHanSansJP',
+      ]
+    }
   },
   plugins: [],
 }
