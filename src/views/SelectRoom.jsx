@@ -3,11 +3,18 @@ import { db } from "../../firebaseConfig"
 import { React, useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
 
+import format from 'date-fns/format';
+
 import RoomButton from "../components/RoomButton";
+import CreateRoom from "../components/CreateRoom";
 
 const SelectRoom = (props) => {
 
+    const showModal = false;
+
     const [rooms, setRooms] = useState([]);
+
+    const [isShowModal, setIsShowModal] = useState(false);
 
     let userData = '';
 
@@ -20,7 +27,7 @@ const SelectRoom = (props) => {
         const unsub = onSnapshot(q, (QuerySnapshot) => {
             setRooms(
                 QuerySnapshot.docs.map(
-                    (doc) => ({ ...doc.data(), id: doc.id })
+                    (doc) => ({ ...doc.data({ serverTimestamps: "estimate" }), id: doc.id })
                 )
             )
         });
@@ -45,15 +52,10 @@ const SelectRoom = (props) => {
                 {rooms.map((room) => (
                     <RoomButton key={room.id} user={props.user} room={room} setData={props.setData} />
                 ))}
-                <form onSubmit={createRoom}>
-                    <span>
-                        <input name="name" type="text" placeholder="Roomの名前" />
-                    </span>
-                    <span>
-                        <button>Create</button>
-                    </span>
-                </form>
-                <button className="flex w-32 h-32 font-Koruri text-white text-[96px] font-normal bg-blue-800 absolute rounded-full bottom-36 right-36 items-center justify-center transition duration-200 ease-in-out transform hover:scale-110">+</button>
+                <button onClick={() => setIsShowModal(true)} className="flex w-32 h-32 font-Koruri text-white text-[96px] font-normal bg-blue-800 absolute rounded-full bottom-36 right-36 items-center justify-center transition duration-200 ease-in-out transform hover:scale-110">+</button>
+                {isShowModal && (
+                    <CreateRoom setIsShowModal={setIsShowModal}/>
+                )}
             </div>
         </div>
     )

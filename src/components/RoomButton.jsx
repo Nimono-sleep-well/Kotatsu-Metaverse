@@ -5,7 +5,6 @@ import "../index.css"
 import { db } from '../../firebaseConfig';
 import { addDoc, collection, doc, deleteDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 
-import { format } from 'date-fns';
 import { Link, useNavigate } from "react-router-dom";
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
