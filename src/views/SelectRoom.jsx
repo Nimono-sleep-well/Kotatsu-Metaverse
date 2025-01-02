@@ -39,44 +39,6 @@ const SelectRoom = (props) => {
         });
     };
 
-    const deleteRoom = async (id) => {
-        const roomsDocumentRef = doc(db, 'rooms', id);
-        await deleteDoc(roomsDocumentRef);
-    }
-
-    const transitionRoom = async (room) => {
-        const roomsDocumentRef = doc(db, 'rooms', room.id);
-        const usersDocumentRef = doc(db, 'usersInLobby', props.user);
-
-        getDoc(usersDocumentRef).then((DocumentSnapshot) => {
-            if (DocumentSnapshot.exists()) {
-                userData = DocumentSnapshot.data().name;
-                console.log(DocumentSnapshot.data().name);
-                console.log(userData);
-            } else {
-                console.log('[Err]No such document');
-            }
-        })
-
-        const nextValueOfPeopleInRoom = room.peopleInRoom + 1;
-        props.setData(room.id);
-        navigate("/Home");
-        await setDoc(roomsDocumentRef, {
-            name: room.name,
-            peopleInRoom: nextValueOfPeopleInRoom,
-        });
-        await addDoc(collection(db, 'rooms', room.id, 'messages'), {
-            name: 'System',
-            text: 'Welcome to ' + room.name,
-        });
-        await addDoc(collection(db, 'rooms', room.id, 'users'), {
-            name: userData,
-            motion: 0,
-            x: 0,
-            y: 0,
-        });
-    }
-
     return (
         <div className='font-body flex w-screen h-screen bg-amber-100 items-center justify-center'>
             <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(theme(spacing.60),1fr))] p-10 w-11/12 h-5/6 bg-white">
@@ -91,6 +53,7 @@ const SelectRoom = (props) => {
                         <button>Create</button>
                     </span>
                 </form>
+                <button className="flex w-32 h-32 font-Koruri text-white text-[96px] font-normal bg-blue-800 absolute rounded-full bottom-36 right-36 items-center justify-center transition duration-200 ease-in-out transform hover:scale-110">+</button>
             </div>
         </div>
     )
