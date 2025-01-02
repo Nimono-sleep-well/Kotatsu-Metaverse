@@ -17,7 +17,6 @@ function App() {
     <>
       <div className='App'>
         <BrowserRouter>
-          <Link to="/">Signin</Link> | <Link to="/SelectRoom">SelectRoom</Link>
           <Routes>
             <Route path='/' element={<Signin setUser={setUser}/>}></Route>
             <Route path='/Home' element={<Home id={data}/>}></Route>

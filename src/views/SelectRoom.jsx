@@ -1,7 +1,9 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, QuerySnapshot, setDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, QuerySnapshot, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig"
 import { React, useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
+
+import RoomButton from "../components/RoomButton";
 
 const SelectRoom = (props) => {
 
@@ -33,6 +35,7 @@ const SelectRoom = (props) => {
         await addDoc(roomsCollectionRef, {
             name: name.value,
             peopleInRoom: 0,
+            createdAt: serverTimestamp(),
         });
     };
 
@@ -76,26 +79,9 @@ const SelectRoom = (props) => {
 
     return (
         <div className='font-body flex w-screen h-screen bg-amber-100 items-center justify-center'>
-            <div className="flex w-11/12 h-5/6 bg-white">
-                <h1>RoomList</h1>
+            <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(theme(spacing.60),1fr))] p-10 w-11/12 h-5/6 bg-white">
                 {rooms.map((room) => (
-                    <div key={room.id}>
-                        <span>
-                            <button className="w-1/2 h-1/2 bg-amber-200" onClick={
-                                () => {
-                                    transitionRoom(room)
-                                }
-                            }>
-                                <span>{room.name}</span>
-                                <span> | </span>
-                                <span>{room.peopleInRoom}</span>
-                            </button>
-                        </span>
-                        <span>
-                            <span> | </span>
-                            <button onClick={() => deleteRoom(room.id)}>Delete</button>
-                        </span>
-                    </div>
+                    <RoomButton key={room.id} user={props.user} room={room} setData={props.setData} />
                 ))}
                 <form onSubmit={createRoom}>
                     <span>

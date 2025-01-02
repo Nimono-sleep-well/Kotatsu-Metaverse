@@ -30,7 +30,7 @@ const Signin = (props) => {
     };
 
     return (
-        <div className='font-body flex w-screen h-screen bg-[#847f68] items-center justify-center'>
+        <div className='font-Koruri flex w-screen h-screen bg-[#847f68] items-center justify-center'>
             <div className='flex w-11/12 h-5/6 bg-[#858585] items-center justify-center'>
                     <div className='text-center'>
                         <h1 className='text-center text-white text-7xl leading-loose font-extrabold'>こたつメタバースへようこそ！</h1>

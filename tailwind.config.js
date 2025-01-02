@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      body: [
+      Koruri: [
         'Koruri',
+      ],
+      SourceHanSansJP: [
         'SourceHanSansJP',
       ]
     }
