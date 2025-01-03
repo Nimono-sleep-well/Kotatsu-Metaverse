@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family:'kana';
+    src: url('/src/assets/fonts/4x4kanafont.ttf')format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DotGothic';
+    src:url('assets/fonts/DotGothic16-Regular.ttf')format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
