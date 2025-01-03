@@ -3,9 +3,20 @@ import React from 'react'
 import "../index.css"
 
 import { db } from '../../firebaseConfig';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, serverTimestamp } from 'firebase/firestore';
 
-const CreateRoom = ({ setIsShowModal }) => {
+const CreateRoom = ({ user, setIsShowModal }) => {
+
+    let userData = '';
+
+    const usersDocumentRef = doc(db, 'usersInLobby', user);
+    getDoc(usersDocumentRef).then((DocumentSnapshot) => {
+        if (DocumentSnapshot.exists()) {
+            userData = DocumentSnapshot.data().name;
+        } else {
+            console.log('[Err]No such document');
+        }
+    })
 
     const createRoom = async (event) => {
         event.preventDefault();
@@ -17,7 +28,7 @@ const CreateRoom = ({ setIsShowModal }) => {
         await addDoc(roomsCollectionRef, {
             name: name.value,
             peopleInRoom: 0,
-            createdAt: serverTimestamp(),
+            createdBy: userData,
         });
     };
 

@@ -54,7 +54,7 @@ const SelectRoom = (props) => {
                 ))}
                 <button onClick={() => setIsShowModal(true)} className="flex w-32 h-32 font-Koruri text-white text-[96px] font-normal bg-blue-800 absolute rounded-full bottom-36 right-36 items-center justify-center transition duration-200 ease-in-out transform hover:scale-110">+</button>
                 {isShowModal && (
-                    <CreateRoom setIsShowModal={setIsShowModal}/>
+                    <CreateRoom user={props.user} setIsShowModal={setIsShowModal}/>
                 )}
             </div>
         </div>

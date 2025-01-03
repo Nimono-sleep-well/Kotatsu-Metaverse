@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 
 import "../index.css"
 
@@ -12,6 +13,9 @@ const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const RoomButton = (props) => {
 
+    const [userData, setUserData] = useState('');
+    const [createdBy, setCreatedBy] = useState('');
+
     const navigate = useNavigate();
 
     const deleteRoom = async (id) => {
@@ -23,11 +27,17 @@ const RoomButton = (props) => {
         const roomsDocumentRef = doc(db, 'rooms', room.id);
         const usersDocumentRef = doc(db, 'usersInLobby', props.user);
     
+        createdBy = getDoc(roomsDocumentRef).then((DocumentSnapshot) => {
+            if (DocumentSnapshot.exists()) {
+                return DocumentSnapshot.data().createdBy;
+            } else {
+                console.log('[Err]No such document');
+            }
+        })
+
         getDoc(usersDocumentRef).then((DocumentSnapshot) => {
             if (DocumentSnapshot.exists()) {
                 userData = DocumentSnapshot.data().name;
-                console.log(DocumentSnapshot.data().name);
-                console.log(userData);
             } else {
                 console.log('[Err]No such document');
             }
@@ -65,7 +75,7 @@ const RoomButton = (props) => {
                         <p className='text-center text-xl font-extrabold translate-x-2.5 -translate-y-3'>{props.room.peopleInRoom}</p>
                     </div>
                     <div className='ml-1 mr-2 w-2/3 h-10 rounded-lg bg-amber-300'>
-                        <p className='text-center text-lg font-bold translate-y-2'>{}</p>
+                        <p className='text-center text-lg font-bold translate-y-2 truncate'>{props.room.createdBy}</p>
                     </div>
                 </div>
             </button>
