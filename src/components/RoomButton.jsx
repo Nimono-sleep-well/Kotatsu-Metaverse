@@ -27,9 +27,9 @@ const RoomButton = (props) => {
         const roomsDocumentRef = doc(db, 'rooms', room.id);
         const usersDocumentRef = doc(db, 'usersInLobby', props.user);
     
-        createdBy = getDoc(roomsDocumentRef).then((DocumentSnapshot) => {
+        getDoc(roomsDocumentRef).then((DocumentSnapshot) => {
             if (DocumentSnapshot.exists()) {
-                return DocumentSnapshot.data().createdBy;
+                setCreatedBy(DocumentSnapshot.data().createdBy);
             } else {
                 console.log('[Err]No such document');
             }
@@ -37,7 +37,7 @@ const RoomButton = (props) => {
 
         getDoc(usersDocumentRef).then((DocumentSnapshot) => {
             if (DocumentSnapshot.exists()) {
-                userData = DocumentSnapshot.data().name;
+                setUserData(DocumentSnapshot.data().name);
             } else {
                 console.log('[Err]No such document');
             }
@@ -49,6 +49,7 @@ const RoomButton = (props) => {
         await setDoc(roomsDocumentRef, {
             name: room.name,
             peopleInRoom: nextValueOfPeopleInRoom,
+            createdBy: room.createdBy,
         });
         await addDoc(collection(db, 'rooms', room.id, 'messages'), {
             name: 'System',
