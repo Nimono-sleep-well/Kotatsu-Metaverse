@@ -3,7 +3,7 @@ import Clock from '../components/Clock';
 
 const Monitor = () => {
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+    <div style={{ position: 'relative', height: '65%', width: '100%' }}>
       <img
         src="/ClockBackground.jpg"
         alt="clockBackground"
