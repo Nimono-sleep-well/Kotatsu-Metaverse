@@ -31,7 +31,7 @@ const Clock = () => {
             letterSpacing: '0.1em'
         }}>
             <p style={{
-                fontSize: '5em',
+                fontSize: '6em',
                 fontFamily: 'kana, monospace', 
             }}>
                 {hour}:{minute}:{second}

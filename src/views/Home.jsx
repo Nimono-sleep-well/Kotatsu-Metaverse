@@ -1,29 +1,30 @@
-import React from 'react';
-import Chat from '../components/Chat';
-import Kotatsu from '../components/Kotatsu';
-import Monitor from '../components/Monitor';
+import React from 'react'
+import Chat from '../components/Chat'
+import Kotatsu from '../components/Kotatsu'
+import Monitor from '../components/Monitor'
+import LeaveRoomButton from '../components/LeaveRoomButton'
 
 const Home = ({ user, id }) => {
-  return (
-    <div className='w-screen h-screen flex flex-col items-center justify-center relative'>
-      <div className='w-full h-full'>
-        <img
-          className='w-full h-full absolute top-0 left-0'
-          src="/thumbnailSample.png"
-          alt="room"
-        />
-      </div>
-      <div className='absolute top-0 left-0 w-full h-full'>
-        <Monitor />
-      </div>
-      <div className='absolute bottom-10'>
-        <Kotatsu />
-      </div>
-      <div className='absolute left-0 bottom-20'>
-        <Chat user={user} roomID={id} />
-      </div>
-    </div>
-  );
-};
 
-export default Home;
+    return (
+        <div className='w-screen h-screen flex flex-col items-center justify-center'>
+            <div className='w-full h-full'>
+                <img className='w-full h-full' src="/thumbnailSample.png" alt="room" />
+            </div>
+            <div className='absolute top-10 right-10'>
+                <LeaveRoomButton roomID={id} />
+            </div>
+            <div className='absolute top-52 w-1/3 h-1/3'>
+                <Monitor />
+            </div>
+            <div className='absolute bottom-10'>
+                <Kotatsu></Kotatsu>
+            </div>
+            <div className='absolute left-0 bottom-20'>
+                <Chat user={user} roomID={id}></Chat>
+            </div>
+        </div>
+    )
+}
+
+export default Home
