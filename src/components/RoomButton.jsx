@@ -4,12 +4,9 @@ import { useState } from 'react'
 import "../index.css"
 
 import { db } from '../../firebaseConfig';
-import { addDoc, collection, doc, deleteDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, deleteDoc, getDoc, setDoc } from 'firebase/firestore';
 
-import { Link, useNavigate } from "react-router-dom";
-
-const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+import { useNavigate } from "react-router-dom";
 
 const RoomButton = (props) => {
 

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { db } from '../../firebaseConfig';
 import "../index.css";
-import { addDoc, collection, doc, deleteDoc, DocumentSnapshot, getDoc, getDocs, onSnapshot, query, QuerySnapshot, serverTimestamp, setDoc, where, updateDoc, orderBy } from 'firebase/firestore';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { addDoc, collection } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const Signin = (props) => {
     const [userName, setUsername] = useState('');
@@ -13,7 +13,7 @@ const Signin = (props) => {
         if (userName.trim() !== '') {
 
             const usersCollectionRef = collection(db, 'usersInLobby');
-            const documentRef = addDoc(usersCollectionRef, {
+            addDoc(usersCollectionRef, {
                 name: userName,
             })
             .then(docRef => {

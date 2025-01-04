@@ -3,7 +3,7 @@ import React from 'react'
 import "../index.css"
 
 import { db } from '../../firebaseConfig';
-import { addDoc, collection, doc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 
 const CreateRoom = ({ user, setIsShowModal }) => {
 

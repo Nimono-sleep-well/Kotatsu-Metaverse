@@ -5,7 +5,7 @@ import "../index.css";
 import { format } from 'date-fns';
 
 import { db } from '../../firebaseConfig'
-import { addDoc, collection, doc, deleteDoc, DocumentSnapshot, getDoc, getDocs, onSnapshot, query, QuerySnapshot, serverTimestamp, setDoc, where, updateDoc, orderBy } from 'firebase/firestore'
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
 
 const ChatLog = ({ roomID }) => {
 
@@ -24,11 +24,6 @@ const ChatLog = ({ roomID }) => {
             )
         });
         return unsub;
-
-        const temp = onSnapshot(messageCollectionRef, (QuerySnapshot) => {
-            setIsChangedLog(true);
-        });
-        return temp;
 
     }, []);
 
