@@ -6,7 +6,11 @@ export default {
   ],
   theme: {
     extend: {},
-  },
+    fontFamily:{
+      kana:['"kana"','sans-serif'],
+      DotGothic:['"DotGothic",sans-serif'],
+    },
+    },
   plugins: [],
 }
 
