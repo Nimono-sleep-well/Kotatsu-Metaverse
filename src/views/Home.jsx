@@ -12,10 +12,13 @@ const Home = ({ user, id }) => {
                 <img className='w-full h-full' src="/thumbnailSample.png" alt="room" />
             </div>
             <div className='absolute top-10 right-10'>
-                <LeaveRoomButton roomID={id}/>
+                <LeaveRoomButton roomID={id} />
+            </div>
+            <div className='absolute top-52 w-1/3 h-1/3'>
+                <Monitor />
             </div>
             <div className='absolute bottom-10'>
-                    <Kotatsu></Kotatsu>
+                <Kotatsu></Kotatsu>
             </div>
             <div className='absolute left-0 bottom-20'>
                 <Chat user={user} roomID={id}></Chat>
