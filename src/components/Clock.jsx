@@ -20,27 +20,11 @@ const Clock = () => {
     const second = currentDate.getSeconds().toString().padStart(2, "0");
 
     return (
-        <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            textAlign: 'center',
-            flexDirection: 'column',
-            color: '#000000',
-            letterSpacing: '0.1em'
-        }}>
-            <p style={{
-                fontSize: '6em',
-                fontFamily: 'kana, monospace', 
-            }}>
+        <div className='flex justify-center items-center h-full text-center flex-col text-black tracking-widest' >
+            <p className='font-kana text-8xl'>
                 {hour}:{minute}:{second}
             </p>
-            <p style={{
-                fontSize: '5em',
-                fontFamily: 'DotGothic, monospace', 
-                fontWeight:'bold'
-            }}>
+            <p className='font-DotGothic text-7xl font-bold mt-5'>
                 {month} {date} {day}
             </p>
         </div>
