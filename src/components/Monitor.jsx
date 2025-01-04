@@ -3,26 +3,15 @@ import Clock from '../components/Clock';
 
 const Monitor = () => {
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+    <div className='relative w-full h-full'>
       <img
         src="/ClockBackground.jpg"
         alt="clockBackground"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '60vw', 
-          zIndex: -1, // 背景画像を後ろ側に
-        }}
+        className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full'
       />
       <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)'
-        }}
+        className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full'
+        
       >
         <Clock />
       </div>
