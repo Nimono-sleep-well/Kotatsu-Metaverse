@@ -24,23 +24,13 @@ const Kotatsu = () => {
       } else if (!north) {
         setNorth(true);
       } else {
-        return(
-          <div>
-            <p>こたつに３人いるので入れません</p>
-          </div>
-        )
+        console.log('満席です');
       }
     }
 
   return (
     <div>
       <img src={imageSrc} alt="Location" onClick={handleClick}/>
-      <p>現在のこたつの状態:</p>
-      <ul>
-        <li>East: {east ? 'Occupied' : 'Empty'}</li>
-        <li>West: {west ? 'Occupied' : 'Empty'}</li>
-        <li>North: {north ? 'Occupied' : 'Empty'}</li>
-      </ul>
     </div>
   )
 }

@@ -17,10 +17,9 @@ function App() {
     <>
       <div className='App'>
         <BrowserRouter>
-          <Link to="/">Signin</Link> | <Link to="/SelectRoom">SelectRoom</Link>
           <Routes>
             <Route path='/' element={<Signin setUser={setUser}/>}></Route>
-            <Route path='/Home' element={<Home id={data}/>}></Route>
+            <Route path='/Home' element={<Home user={user} id={data}/>}></Route>
             <Route path='/SelectRoom' element={<SelectRoom user={user} setData={setData}/>}></Route>
             <Route path='*' element={<NotFound/>}></Route>
           </Routes>

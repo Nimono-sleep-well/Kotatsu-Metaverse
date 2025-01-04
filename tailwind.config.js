@@ -6,11 +6,21 @@ export default {
   ],
   theme: {
     extend: {},
-    fontFamily:{
-      kana:['"kana"','sans-serif'],
-      DotGothic:['"DotGothic",sans-serif'],
-    },
-    },
+    fontFamily: {
+      Koruri: [
+        'Koruri',
+      ],
+      SourceHanSansJP: [
+        'SourceHanSansJP',
+      ],
+      kana: [
+        'kana',
+      ],
+      DotGothic: [
+        'DotGothic',
+      ],
+    }
+  },
   plugins: [],
 }
 

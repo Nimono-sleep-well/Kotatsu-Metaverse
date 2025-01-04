@@ -3,11 +3,14 @@ import React from 'react'
 import InputChat from './InputChat'
 import ChatLog from './ChatLog'
 
-const Chat = ({ roomID }) => {
+const Chat = ({ user, roomID }) => {
     return (
-        <div>
-            <InputChat roomID={roomID}></InputChat>
+        <div className='h-full'>
+            <div className='overflow-y-auto'>
             <ChatLog roomID={roomID}></ChatLog>
+            </div>
+            
+            <InputChat user={user} roomID={roomID}></InputChat>
         </div>
     )
 }
