@@ -1,23 +1,27 @@
 import React from 'react'
 import Clock from '../components/Clock'
 import Chat from '../components/Chat'
+import ChatLog from '../components/ChatLog'
+import InputChat from '../components/InputChat'
 import Kotatsu from '../components/Kotatsu'
 import User from '../components/User'
 
-const Home = ({ id }) => {
+const Home = ({ user, id }) => {
 
     const x = 0;
     const y = 100;
 
     return (
-        <div className='w-screen h-screen bg-blue-400 flex flex-col items-center justify-center'>
-            <div className='bg-red-300 w-full h-[91%]'>
+        <div className='w-screen h-screen flex flex-col items-center justify-center'>
+            <div className='w-full h-full'>
                 <img className='w-full h-full' src="/thumbnailSample.png" alt="room" />
+                
             </div>
-            <div className='flex bg-yellow-950 w-full h-[9%] items-center justify-center'>
-                <div className='-translate-y-52 scale-125'>
+            <div className='absolute bottom-10'>
                     <Kotatsu></Kotatsu>
-                </div>
+            </div>
+            <div className='absolute left-0 bottom-20'>
+                <Chat user={user} roomID={id}></Chat>
             </div>
         </div>
     )

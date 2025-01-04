@@ -55,11 +55,8 @@ const RoomButton = (props) => {
             name: 'System',
             text: 'Welcome to ' + room.name,
         });
-        await addDoc(collection(db, 'rooms', room.id, 'users'), {
+        await setDoc(doc(db, 'rooms', room.id, 'users', props.user), {
             name: userData,
-            motion: 0,
-            x: 0,
-            y: 0,
         });
     }
 

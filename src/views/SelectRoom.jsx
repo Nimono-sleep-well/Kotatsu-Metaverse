@@ -48,7 +48,7 @@ const SelectRoom = (props) => {
 
     return (
         <div className='font-body flex w-screen h-screen bg-amber-100 items-center justify-center'>
-            <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(theme(spacing.60),1fr))] p-10 w-11/12 h-5/6 bg-white">
+            <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(theme(spacing.60),1fr))] p-10 w-11/12 h-5/6 bg-white">
                 {rooms.map((room) => (
                     <RoomButton key={room.id} user={props.user} room={room} setData={props.setData} />
                 ))}
