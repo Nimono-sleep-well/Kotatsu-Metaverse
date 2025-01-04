@@ -41,6 +41,13 @@
     font-style: normal;
     font-display: swap;
 }
+@font-face {
+    font-family:'kana';
+    src: url('/src/assets/fonts/4x4kanafont.ttf')format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
 
 @font-face {
     font-family: 'SourceHanSansJP';
@@ -94,6 +101,13 @@
     font-family: 'SourceHanSansJP';
     src: url('../src/assets/fonts/SourceHanSansJP-Regular.otf') format('ttf');
     font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'DotGothic';
+    src:url('assets/fonts/DotGothic16-Regular.ttf')format('truetype');
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }

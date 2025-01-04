@@ -1,5 +1,4 @@
 import React from 'react'
-import Clock from '../components/Clock'
 import Chat from '../components/Chat'
 import ChatLog from '../components/ChatLog'
 import InputChat from '../components/InputChat'

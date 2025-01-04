@@ -12,7 +12,13 @@ export default {
       ],
       SourceHanSansJP: [
         'SourceHanSansJP',
-      ]
+      ],
+      kana: [
+        'kana',
+      ],
+      DotGothic: [
+        'DotGothic',
+      ],
     }
   },
   plugins: [],
