@@ -3,7 +3,6 @@ const Kotatsu = () => {
   const [east,setEast]= useState(false);
   const [west,setWest]= useState(true); 
   const [north,setNorth]= useState(false);
-  const peopleInKotatsu=1; //使わなかった
   let imageSrc = '';
 
     if(east&&west){

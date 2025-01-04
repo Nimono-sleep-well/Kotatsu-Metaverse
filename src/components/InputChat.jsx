@@ -2,9 +2,9 @@ import React from 'react'
 
 import "../index.css";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { db } from '../../firebaseConfig';
-import { collection, onSnapshot, addDoc, doc, serverTimestamp, getDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, serverTimestamp, getDoc } from 'firebase/firestore';
 
 const InputChat = ({ user, roomID }) => {
 

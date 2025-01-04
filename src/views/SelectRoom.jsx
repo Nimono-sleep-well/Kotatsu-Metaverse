@@ -1,24 +1,15 @@
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, QuerySnapshot, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig"
 import { React, useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom";
-
-import format from 'date-fns/format';
 
 import RoomButton from "../components/RoomButton";
 import CreateRoom from "../components/CreateRoom";
 
 const SelectRoom = (props) => {
 
-    const showModal = false;
-
     const [rooms, setRooms] = useState([]);
 
     const [isShowModal, setIsShowModal] = useState(false);
-
-    let userData = '';
-
-    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -33,18 +24,6 @@ const SelectRoom = (props) => {
         });
         return unsub;
     }, []);
-
-    const createRoom = async (event) => {
-        event.preventDefault();
-        const { name } = event.target.elements;
-        const roomsCollectionRef = collection(db, 'rooms');
-
-        await addDoc(roomsCollectionRef, {
-            name: name.value,
-            peopleInRoom: 0,
-            createdAt: serverTimestamp(),
-        });
-    };
 
     return (
         <div className='font-body flex w-screen h-screen bg-amber-100 items-center justify-center'>
