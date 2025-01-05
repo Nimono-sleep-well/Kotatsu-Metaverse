@@ -1,14 +1,15 @@
 import React from 'react'
 import { db } from '../../firebaseConfig';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 import { useNavigate } from 'react-router-dom'
 
-const LeaveRoomButton = ({ roomID }) => {
+const LeaveRoomButton = ({ roomID, userID }) => {
 
     const navigate = useNavigate();
 
     const roomsDocRef = doc(db, 'rooms', roomID);
+    const usersDocRef = doc(db, 'rooms', roomID, 'users', userID);
 
     const leaveRoom = () => {
         navigate('/SelectRoom');
@@ -17,6 +18,7 @@ const LeaveRoomButton = ({ roomID }) => {
                 updateDoc(roomsDocRef, {
                     peopleInRoom: doc.data().peopleInRoom - 1,
                 });
+                deleteDoc(usersDocRef);
             } else {
                 console.log('No such document!');
             }
